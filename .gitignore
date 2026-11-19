@@ -1,0 +1,62 @@
+# IntelliJ / Android Studio
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+
+# Gradle
+.gradle/
+build/
+*/build/
+target/
+
+# Keep Gradle wrapper JAR
+!gradle/wrapper/gradle-wrapper.jar
+
+
+# Android
+local.properties
+.cxx/
+.externalNativeBuild/
+captures/
+
+
+# Java / Spring
+*.class
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+bin/
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+
+# Logs
+*.log
+
+
+# OS
+.DS_Store
+Thumbs.db
+
+
+# VS Code
+.vscode/
+
+# Backend local configuration / secrets
+application.properties

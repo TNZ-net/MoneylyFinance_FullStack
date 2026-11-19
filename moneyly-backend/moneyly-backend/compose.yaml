@@ -1,0 +1,13 @@
+services:
+  backend:
+    image: moneyly-backend:latest
+    container_name: moneyly-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/moneyly_finance
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SPRING_DATA_REDIS_HOST: host.docker.internal
+      SPRING_DATA_REDIS_PORT: 6379
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
