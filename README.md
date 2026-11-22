@@ -1,37 +1,43 @@
-# 📦 Store Pulse
+# 💰 MoneylyFinance
 
-**An end-to-end inventory management platform: authenticated PostgreSQL inventory → sales tracking → Shopify integration → AI inventory copilot → Docker/Kubernetes deployment.**
+**An offline-first personal finance Android application: expense tracking → local persistence → backend synchronization → AI-powered category classification and spending prediction.**
 
-![Next.js](https://img.shields.io/badge/Next.js-16-black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
-![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E)
-![Groq](https://img.shields.io/badge/Groq-LLM-orange)
-![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-Minikube-326CE5)
+![Kotlin](https://img.shields.io/badge/Kotlin-Android-7F52FF)
+![Jetpack Compose](https://img.shields.io/badge/Jetpack-Compose-4285F4)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-Backend-6DB33F)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791)
 
-Store Pulse is a full-stack inventory management dashboard for monitoring products, stock levels, sales activity and inventory health. Product and sales data are stored in Supabase PostgreSQL, with Supabase Auth and Row Level Security providing store-specific access control. The platform also integrates Shopify sales data and an LLM-powered copilot for natural-language inventory analysis and recommendations. The application is containerized with Docker and deployed locally through Kubernetes and Minikube.
+A personal finance application that allows users to manage expenses, monitor monthly budgets and analyse spending patterns. The Android application uses Room for local persistence and communicates with a Java Spring Boot backend through REST APIs. The backend stores financial records in PostgreSQL and provides AI-powered expense category suggestions and spending predictions.
 
 ---
 
-## Demo
+Demo
 
-**Store Pulse Dashboard**
+Dashboard UI
 
 <p align="center">
-  <img src="docs/dashboard.png" alt="Store Pulse inventory dashboard" width="800"><br>
-  <b>Figure 1.</b> Store Pulse inventory dashboard
+  <img width="460" height="891" alt="image" src="https://github.com/user-attachments/assets/00138080-846e-4fbc-9e83-082d43e8832a" />
+  <b>Figure 1.</b> MoneylyFinance dashboard
 </p>
 
-- **Inventory:** product, SKU, category, price, stock and threshold information
-- **Search / Filter:** find products by name, SKU or category
-- **Stock monitoring:** identify products approaching or below their threshold
-- **Sales:** view recent sales activity
-- **AI Copilot:** ask natural-language questions about inventory and sales
+Expense management
 
-**Demo video:** [Store Pulse demo](<img width="426" height="943" alt="Model budget prediction" src="https://github.com/user-attachments/assets/3cc1f64b-7938-4d34-84fc-b27042edf245" />
-)
+<p align="center">
+  <img width="426" height="943" alt="Model budget prediction" src="https://github.com/user-attachments/assets/3a56681e-0790-4bd0-b6c4-e1f99632aefb" />
+  <b>Figure 2.</b> Expense tracking and management
+</p>
 
-[Moneyly.zip](https://github.com/user-attachments/files/35229202/Moneyly.zip)
+Dashboard: monthly budget, total expenses and financial overview
+
+Expense management: create, view, edit and delete expense records
+
+AI category prediction: automated expense category suggestions
+
+Spending prediction: forecast future spending from historical monthly expenses
+
+Demo video: MoneylyFinance demo 
+[Moneyly.zip](https://github.com/user-attachments/files/35230286/Moneyly.zip)
+
 
 
 ---
@@ -40,19 +46,14 @@ Store Pulse is a full-stack inventory management dashboard for monitoring produc
 
 ```mermaid
 flowchart LR
-    U["Store Owner"] --> A["Next.js<br/>Store Pulse Dashboard"]
-
-    A --> AUTH["Supabase Auth"]
-    A --> API["Next.js API Routes"]
-
-    API --> DB[("Supabase PostgreSQL<br/>products · sales")]
-
-    API --> AI["AI Copilot<br/>Groq LLM"]
-
-    API --> SHOP["Shopify<br/>Sales / Orders"]
-
-    A --> D["Docker Container"]
-    D --> K["Kubernetes / Minikube"]
+    A["Android App<br/>Jetpack Compose"] --> B["ViewModel<br/>MVVM"]
+    B --> C[("Room Database<br/>Local expenses · Budgets")]
+    B --> D["Retrofit<br/>REST API Client"]
+    D --> E["Spring Boot<br/>REST API"]
+    E --> F[("PostgreSQL<br/>Financial records")]
+    E --> G["AI Services<br/>Category prediction<br/>Linear regression"]
+    E --> H[("Redis<br/>Cache / data service")]
+    C -->|"Pending expense sync"| D
 ```
 
 ---
@@ -61,103 +62,46 @@ flowchart LR
 
 | Area | Technologies |
 |---|---|
-| Language | TypeScript |
-| Frontend | Next.js, React, Tailwind CSS |
-| Database | Supabase PostgreSQL |
-| Authentication | Supabase Auth, `@supabase/ssr` |
-| Security | PostgreSQL Row Level Security (RLS) |
-| Backend | Next.js App Router, API Routes |
-| Sales / Commerce | Shopify integration |
-| LLM and AI | Groq API, AI inventory copilot |
-| Containerization | Docker |
-| Orchestration | Kubernetes, Minikube |
-| Configuration | Environment variables, Kubernetes ConfigMaps and Secrets |
+| Android development | Kotlin, Android SDK, Jetpack Compose |
+| Architecture | MVVM, Repository Pattern, Offline-First Architecture |
+| Local database | Room, SQLite, Kotlin Coroutines, Flow |
+| API integration | Retrofit, RESTful APIs, JSON, Gson |
+| Backend | Java, Spring Boot, Gradle |
+| Database | PostgreSQL, SQL |
+| AI and predictive analytics | Expense classification, Linear Regression, Predictive Analytics |
+| Infrastructure | Redis, Docker |
+| Testing and development | Android Studio, IntelliJ IDEA, Postman, Git, GitHub |
 
 ---
 
 ## Concepts applied
 
-**Full-stack development**
-- Next.js App Router with TypeScript
-- Server and client components
-- Responsive dashboard UI
-- REST-style API routes
-- Search and filtering
+**Android development**
+- Declarative UI development with Jetpack Compose
+- MVVM architecture and reactive UI state management
+- Local persistence using Room Database
+- Kotlin Coroutines and Flow for asynchronous operations
 
-**Database engineering**
-- PostgreSQL relational data modelling
-- Products and sales tables
-- Foreign-key relationships
-- Database constraints and indexes
-- Persistent inventory and sales records
+**Backend engineering**
+- RESTful API design and CRUD operations
+- Client-server communication using Retrofit
+- Spring Boot service and controller layers
+- PostgreSQL relational data persistence
 
-**Authentication and security**
-- Supabase authentication
-- Server-side authentication with Supabase SSR
-- Protected application routes
-- PostgreSQL Row Level Security
-- Store-specific data isolation using authenticated user IDs
+**Data synchronization**
+- Offline-first application architecture
+- Local expense storage and pending-sync tracking
+- Synchronization between Android and backend
+- Expense creation, editing and deletion
 
-**Inventory and sales**
-- Stock-level monitoring
-- Configurable inventory thresholds
-- Low-stock identification
-- Inventory value calculations
-- Sales transaction tracking
-- Manual and Shopify sales sources
+**AI and predictive analytics**
+- Automated expense category prediction
+- Linear regression for next-month spending forecasts
+- Historical monthly spending aggregation
+- Backend integration for AI-powered features
 
-**LLM engineering**
-- Direct Groq LLM API integration
-- Natural-language inventory analysis
-- Structured inventory and sales context
-- AI-generated inventory recommendations
-- Read-only AI interaction with business data
-
-**E-commerce integration**
-- Shopify sales integration
-- External order identifiers
-- Shopify sales represented alongside internal sales
-- Webhook-oriented integration architecture
-
-**DevOps**
-- Docker containerization
-- Kubernetes Deployment and Service
-- ConfigMaps and Secrets
-- Minikube local Kubernetes environment
-
----
-
-## Data
-
-### Products
-
-```text
-products
-├── id
-├── store_id
-├── name
-├── sku
-├── category
-├── stock
-├── threshold
-├── price
-├── created_at
-└── updated_at
-```
-
-### Sales
-
-```text
-sales
-├── id
-├── store_id
-├── product_id
-├── quantity
-├── unit_price
-├── source
-├── external_order_id
-├── sold_at
-└── created_at
-```
-
-The `store_id` associates records with the authenticated store, while `product_id` connects sales to inventory products. The `source` field distinguishes manually recorded sales from Shopify-originated sales.
+**Software engineering**
+- Separation of concerns between UI, business logic and data layers
+- Docker-based service management
+- Database migrations and schema versioning
+- Git-based version control
