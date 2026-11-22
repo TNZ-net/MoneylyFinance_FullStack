@@ -11,28 +11,26 @@ A personal finance application that allows users to manage expenses, monitor mon
 
 ---
 
-Demo
-
-Dashboard UI
+## Demo
+**Dashboard UI**
 
 <p align="center">
-  <img width="460" height="891" alt="image" src="https://github.com/user-attachments/assets/00138080-846e-4fbc-9e83-082d43e8832a" />
-  <b>Figure 1.</b> MoneylyFinance dashboard
+  <img src="https://github.com/user-attachments/assets/00138080-846e-4fbc-9e83-082d43e8832a" alt="MoneylyFinance dashboard" width="250">
+  <br>
+  <b>Figure 1. MoneylyFinance dashboard</b>
 </p>
 
-Expense management
+**Expense management**
 
 <p align="center">
-  <img width="426" height="943" alt="Model budget prediction" src="https://github.com/user-attachments/assets/3a56681e-0790-4bd0-b6c4-e1f99632aefb" />
-  <b>Figure 2.</b> Expense tracking and management
+  <img src="https://github.com/user-attachments/assets/3a56681e-0790-4bd0-b6c4-e1f99632aefb" alt="MoneylyFinance expense management" width="250">
+  <br>
+  <b>Figure 2. Expense tracking and management</b>
 </p>
 
 Dashboard: monthly budget, total expenses and financial overview
-
 Expense management: create, view, edit and delete expense records
-
 AI category prediction: automated expense category suggestions
-
 Spending prediction: forecast future spending from historical monthly expenses
 
 Demo video: MoneylyFinance demo 
